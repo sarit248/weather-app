@@ -1,3 +1,4 @@
-<div *ngIf="locationData$ | async as locationData">
-  <p>{{locationData.name}} {{locationData.main.temp | floor }}</p>
+<div class="currentWeather" *ngIf="locationData$ | async as locationData">
+  <p class="currentWeather__temp">{{locationData.name}} {{locationData.main.temp | floor }}  &#8451;</p>
+  <p class="currentWeather__description" *ngIf="getFavoritesUrl()">{{weatherDescription}}</p>
 </div>

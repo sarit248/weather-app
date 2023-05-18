@@ -1,6 +1,6 @@
-<ng-container *ngIf="(locationForecast$ | async) as locationForecasts">
-  <ul *ngFor="let tempData of locationForecasts">
+<div class="forecast__container" *ngIf="(locationForecast$ | async) as locationForecasts">
+  <ul  class="forecast__description"*ngFor="let tempData of locationForecasts">
     <li>{{ tempData.date}}</li>
-    <li>{{ tempData.temp | floor }}</li>
+    <li>{{ tempData.temp | floor }} &#8451;</li>
   </ul>
-</ng-container>
+</div>

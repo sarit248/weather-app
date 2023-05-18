@@ -1,0 +1,24 @@
+.currentWeather{
+  height: 200px;
+  width: 200px;
+  border: 1px solid darkcyan;
+  background-color: lightsteelblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 30px;
+  margin-right: 10px;
+
+
+
+  &__temp{
+    font-size: 20px;
+  }
+
+  &__desciption{
+    font-size: 20px;
+  }
+}
+
+

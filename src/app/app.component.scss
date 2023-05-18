@@ -1,8 +1,8 @@
-//@import '~normalize.css';
 
 .navbar{
   display: flex;
   justify-content: space-between;
+  padding: 30px;
 
   &__title{
     color: lightblue;
@@ -16,5 +16,6 @@
     justify-content: space-evenly;
     width: 300px;
     list-style-type: none;
+    font-size: 20px;
   }
 }

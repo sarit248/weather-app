@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {WeatherSharedDataService} from "../../services/weather-shared-data.service";
 
 @Component({
@@ -11,11 +11,13 @@ import {WeatherSharedDataService} from "../../services/weather-shared-data.servi
 export class FavoritesComponent implements OnInit {
   cities: string[] = [];
   city: string = '';
-  @Input() data!: Observable<string>;
+  favoritesCities$!: Observable<string[]>
 
   constructor(private weatherSharedDataService: WeatherSharedDataService) {}
 
   ngOnInit() {
+
+    this.favoritesCities$ = this.weatherSharedDataService.getFavorites()
     this.weatherSharedDataService.getFavorites().subscribe(cities => {
       this.cities = cities;
 
@@ -31,6 +33,10 @@ export class FavoritesComponent implements OnInit {
       console.log(this.cities)
     }
     });
+  }
+
+  getCityObservable(city: string): Observable<string> {
+    return of(city);
   }
 }
 

@@ -12,7 +12,7 @@ import {WeatherApiService} from "../../services/weatherApi.service";
 export class HomeComponent implements OnInit {
   locationData$!: Observable<GeneralWeatherResponse>;
   cityName!: string;
-  dataSubject = new BehaviorSubject<string>("tel-aviv" || '');
+  citySubject = new BehaviorSubject<string>("tel-aviv" || '');
 
   constructor(private weatherService: WeatherApiService, private  weatherShareDataService: WeatherSharedDataService) {
   }
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   getCitySearchResult(cityName: string) {
     this.cityName = cityName;
     console.log(cityName)
-    this.dataSubject.next(cityName);
+    this.citySubject.next(cityName);
   }
 
 

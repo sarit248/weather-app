@@ -11,13 +11,13 @@ import {WeatherApiService} from "../../services/weatherApi.service";
 export class WeatherForecastComponent implements OnInit {
   locationForecast$!: Observable<WeatherUI[]>;
   @Input() cityName!: string;
-  @Input() data!: Observable<string>;
+  @Input() city!: Observable<string>;
 
   constructor(private weatherService: WeatherApiService) {
   }
 
   ngOnInit() {
-    this.data.subscribe(cityName => {
+    this.city?.subscribe(cityName => {
       this.cityName = cityName;
       this.getLocationForecast();
       console.log("weather-forecast city:" + cityName);

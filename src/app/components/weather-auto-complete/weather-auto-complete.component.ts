@@ -49,7 +49,7 @@ export class WeatherAutoCompleteComponent implements OnInit {
       .subscribe(data => {
           if (data.length > 0) {
             this.citiesName = data.map(d => d.LocalizedName);
-            this.searchResult.next(this.citiesName[0]);
+            this.searchResult.emit(this.citiesName[0]);
           }
         }
       )

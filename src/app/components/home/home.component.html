@@ -2,15 +2,12 @@
 
   <app-weather-auto-complete (searchResult)="getCitySearchResult($event)"></app-weather-auto-complete>
 
-
-  <!--  <app-weather-forecast [cityName]="cityName"></app-weather-forecast>-->
-  <app-weather-forecast [data]="dataSubject.asObservable()"></app-weather-forecast>
-
-  <app-current-weather [data]="dataSubject.asObservable()"></app-current-weather>
-
-
-  <button class="favorites" (click)="addToFavorites()">Add to Favorites</button>
-
-
+  <div class="home-container__inner">
+    <div class="home-container__favorites-current-weather">
+  <app-current-weather [city]="citySubject.asObservable()"></app-current-weather>
+    <button class="favorites-button" (click)="addToFavorites()">Add to Favorites</button>
+    </div>
+    <app-weather-forecast [cityName]="cityName"></app-weather-forecast>
+  <app-weather-forecast [city]="citySubject.asObservable()"></app-weather-forecast>
 </div>
-
+</div>
