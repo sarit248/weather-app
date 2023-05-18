@@ -1,0 +1,20 @@
+//@import '~normalize.css';
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+
+  &__title{
+    color: lightblue;
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  &__nav{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    width: 300px;
+    list-style-type: none;
+  }
+}

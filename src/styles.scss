@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+/* CSS RESET */
+
+* {
+  box-sizing: border-box;
+  outline: none; // TODO: consult as to whether to leave outline or hide it
+}
+
+ul,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+input {
+  border: none;
+}
+
+body{
+  margin: 0;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

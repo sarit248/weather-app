@@ -1,0 +1,3 @@
+<div *ngIf="locationData$ | async as locationData">
+  <p>{{locationData.name}} {{locationData.main.temp | floor }}</p>
+</div>

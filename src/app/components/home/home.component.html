@@ -1,0 +1,16 @@
+<div class="home-container">
+
+  <app-weather-auto-complete (searchResult)="getCitySearchResult($event)"></app-weather-auto-complete>
+
+
+  <!--  <app-weather-forecast [cityName]="cityName"></app-weather-forecast>-->
+  <app-weather-forecast [data]="dataSubject.asObservable()"></app-weather-forecast>
+
+  <app-current-weather [data]="dataSubject.asObservable()"></app-current-weather>
+
+
+  <button class="favorites" (click)="addToFavorites()">Add to Favorites</button>
+
+
+</div>
+
