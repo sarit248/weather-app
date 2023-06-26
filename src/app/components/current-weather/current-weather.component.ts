@@ -1,45 +1,44 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Router, RouterLinkActive} from "@angular/router";
-import {BehaviorSubject, Observable} from "rxjs";
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {Observable, Subject, takeUntil, tap} from "rxjs";
 import {GeneralWeatherResponse} from "../../models/GeneralWeatherResponse";
 import {WeatherSharedDataService} from "../../services/weather-shared-data.service";
-import {WeatherApiService} from "../../services/weatherApi.service";
 
 @Component({
   selector: 'app-current-weather',
   templateUrl: './current-weather.component.html',
   styleUrls: ['./current-weather.component.scss']
 })
-export class CurrentWeatherComponent implements OnInit{
+export class CurrentWeatherComponent implements OnDestroy{
   locationData$!: Observable<GeneralWeatherResponse>;
-  cityName!: string;
-  weatherDescription!: string;
-  @Input() city!: Observable<string>;
+  ngUnsubscribe = new Subject();
+  private _cityName: string = "";
+  locationData!: GeneralWeatherResponse;
 
+
+  @Input()
+  set city(city: string) {
+    this._cityName = city;
+    // this.updateLocationData();
+  }
+
+  get city(): string {
+    return this._cityName
+  }
+  @Input() isFavorites!: boolean;
 
   constructor(private weatherSharedDataService: WeatherSharedDataService, private router: Router) {
   }
 
 
-  ngOnInit() {
-    this.city.subscribe(cityName => {
-      this.cityName = cityName;
-      console.log('cityName ' + this.cityName);
-      this.locationData$ = this.weatherSharedDataService.getWeatherByCityName(this.cityName);
-      this.locationData$.subscribe(data => data.weather.map(data => this.weatherDescription = data.description));
-      localStorage.setItem('currentCity', this.cityName);
+  // updateLocationData() {
+  //   this.weatherSharedDataService.getCityNameWeather(this.city).pipe(takeUntil(this.ngUnsubscribe))
+  //     .subscribe(data => this.locationData = data)
+  // };
 
-      // Retrieve current city from localStorage
-      const storedCurrentCity = localStorage.getItem('currentCity');
-      if (storedCurrentCity) {
-        this.cityName = storedCurrentCity;
-        console.log('cityName ' + this.cityName);
-      }
-    });
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next(0);
+    this.ngUnsubscribe.complete();
   }
-
-  getFavoritesUrl(){
-    return this.router.url === '/favorites'
-  }
-
 }

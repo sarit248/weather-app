@@ -1,6 +1,9 @@
-<h2>Favorite Cities</h2>
-<ul class="favorites__container">
-  <li *ngFor="let city of favoritesCities$ | async">
-    <app-current-weather [city]="getCityObservable(city)"></app-current-weather>
-  </li>
-</ul>
+<div class="favorites__container">
+  <h2 class="favorites__title">Favorite Cities</h2>
+  <div class="favorites__container__inner">
+  <ng-container *ngFor="let city of favoritesCities$ | async">
+    <app-current-weather [city]="city" [isFavorites]="isFavorites"></app-current-weather>
+  </ng-container>
+</div>
+</div>
+

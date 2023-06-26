@@ -1,7 +1,32 @@
-.favorites__container{
-  display: flex;
-}
+.favorites{
+  &__container {
+    height: calc(100vh - 74px);
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #3e91c4;
 
-h2{
-  margin-left: 32px;
-}
+
+    &__inner {
+      display: flex;
+      flex-wrap: wrap;
+      background-image: url('../../../assets/images/favorites_cover.jpg');
+      background-size: cover;
+      width: 95%;
+      height: 86%;
+      justify-content: space-between;
+    }
+  }
+    &__title{
+      margin-left: 32px;
+      text-align: center;
+      padding-top: 30px;
+      font-size: 25px;
+      color: lightblue;
+    }
+  }
+
+

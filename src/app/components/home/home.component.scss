@@ -9,7 +9,8 @@
   flex-direction: column;
 
   &__inner{
-    background-color: lightgray;
+    background-image: url('../../../assets/images/cover-image.jpeg');
+    background-size: cover;
     width: 95%;
     height: 86%;
     display: flex;

@@ -1,13 +1,14 @@
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {ElementRef, Injectable} from '@angular/core';
-import {Observable, of, throwError} from "rxjs";
-import {GeneralWeatherResponse, List, LocationInfo} from "../models/GeneralWeatherResponse";
+import {Injectable} from '@angular/core';
+import {Observable, throwError} from "rxjs";
+import {GeneralForecastResponse, GeneralWeatherResponse, LocationInfo} from "../models/GeneralWeatherResponse";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherApiService {
-  key = '18b9a5660b6dc23b7f70bd26f04bd803';
+  // key = '18b9a5660b6dc23b7f70bd26f04bd803';
+  key = 'b71e81dce43735c52bba2f39b8fc4485';
   apiKey = 'mcWiAQe14iAdmq4IOvPHfUTo0Mk89pHt'
   baseUrl = 'https://api.openweathermap.org/data/2.5/weather?&units=metric';
   baseUrlFiveDaysForecast = 'https://api.openweathermap.org/data/2.5/forecast?&units=metric';
@@ -19,15 +20,15 @@ export class WeatherApiService {
   constructor(private http: HttpClient) {
   }
 
-  getWeatherByCityName(location: string) {
+  getWeatherByCityName(location: string): Observable<GeneralWeatherResponse> {
     return this.http.get<GeneralWeatherResponse>(`${this.baseUrl}&appid=${this.key}&q=${location}`)
   }
 
-  getLocationFiveDaysForecast(location: string) {
-    return this.http.get<GeneralWeatherResponse>(`${this.baseUrlFiveDaysForecast}&appid=${this.key}&q=${location}`)
+  getLocationFiveDaysForecast(location: string):  Observable<GeneralForecastResponse> {
+    return this.http.get<GeneralForecastResponse>(`${this.baseUrlFiveDaysForecast}&appid=${this.key}&q=${location}`)
   }
 
-  getAutoCompleteSearch(location: string) {
+  getAutoCompleteSearch(location: string): Observable<LocationInfo[]> {
     return this.http.get<LocationInfo[]>(`${this.autocompleteUrl}?apikey=${this.apiKey}&q=${location}`)
   }
 

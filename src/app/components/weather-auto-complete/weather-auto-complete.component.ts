@@ -1,19 +1,8 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {
-  BehaviorSubject,
-  debounceTime,
-  distinctUntilChanged,
-  fromEvent,
-  map,
-  Observable,
-  of,
-  switchMap,
-  tap
-} from "rxjs";
-import {LocationInfo} from "../../models/GeneralWeatherResponse";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {debounceTime, distinctUntilChanged, switchMap, tap} from "rxjs";
 import {WeatherApiService} from "../../services/weatherApi.service";
-
 
 
 @Component({
@@ -49,10 +38,14 @@ export class WeatherAutoCompleteComponent implements OnInit {
       .subscribe(data => {
           if (data.length > 0) {
             this.citiesName = data.map(d => d.LocalizedName);
-            this.searchResult.emit(this.citiesName[0]);
+            // this.searchResult.emit(this.citiesName[0]);
           }
         }
       )
+  }
+
+  citySelected(event: MatAutocompleteSelectedEvent) {
+    this.searchResult.emit(event.option.value);
   }
 }
 

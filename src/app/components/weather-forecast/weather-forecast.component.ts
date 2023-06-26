@@ -1,6 +1,6 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {map, Observable, Subscription} from "rxjs";
-import {List, WeatherUI} from "../../models/GeneralWeatherResponse";
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import {map, Observable} from "rxjs";
+import {GeneralWeatherResponse, WeatherUI} from "../../models/GeneralWeatherResponse";
 import {WeatherApiService} from "../../services/weatherApi.service";
 
 @Component({
@@ -9,42 +9,35 @@ import {WeatherApiService} from "../../services/weatherApi.service";
   styleUrls: ['./weather-forecast.component.scss']
 })
 export class WeatherForecastComponent implements OnInit {
-  locationForecast$!: Observable<WeatherUI[]>;
-  @Input() cityName!: string;
-  @Input() city!: Observable<string>;
-
-  constructor(private weatherService: WeatherApiService) {
-  }
+  // locationForecast$!: Observable<WeatherUI[]>;
+  @Input() locationForecast!: WeatherUI[] | null;
+  // @Input() cityName!: string;
+  // @Input() city!: Observable<string>;
+  // @Input() city!: string;
+  // constructor(private weatherService: WeatherApiService) {
+  // }
 
   ngOnInit() {
-    this.city?.subscribe(cityName => {
-      this.cityName = cityName;
-      this.getLocationForecast();
-      console.log("weather-forecast city:" + cityName);
-    });
+    /*    this.city?.subscribe(cityName => {
+          this.cityName = cityName;
+          this.getLocationForecast();
+        });*/
 
-    // localStorage.setItem('currentCity', JSON.stringify(this.cityName));
+    // localStorage.setItem('currentCity', (this.cityName));
     // // Retrieve favorites from localStorage
     // const storedCurrenCity = localStorage.getItem('currentCity');
     // if (storedCurrenCity) {
-    //   this.cityName = JSON.parse(storedCurrenCity);
-    //   console.log(this.cityName)
+    //   this.cityName = (storedCurrenCity);
     // }
-    localStorage.setItem('currentCity', (this.cityName));
-    // Retrieve favorites from localStorage
-    const storedCurrenCity = localStorage.getItem('currentCity');
-    if (storedCurrenCity) {
-      this.cityName = (storedCurrenCity);
-    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    localStorage.setItem('currentCity', (this.cityName));
+    /*localStorage.setItem('currentCity', (this.cityName));
     // Retrieve favorites from localStorage
     const storedCurrenCity = localStorage.getItem('currentCity');
     if (storedCurrenCity) {
       this.cityName = (storedCurrenCity);
-    }
+    }*/
   }
 
   // ngOnChanges(changes: SimpleChanges) {
@@ -56,19 +49,18 @@ export class WeatherForecastComponent implements OnInit {
 
 
   getLocationForecast() {
-    this.locationForecast$ = this.weatherService
-      .getLocationFiveDaysForecast(this.cityName)
-      .pipe(
-        map(data => data.list.filter((item: any) => {
-          const itemDate = new Date(item.dt_txt);
-          return itemDate.getHours() === 12
-        }).map((day: List) => {
-            return {
-              date: new Date(day.dt_txt).toLocaleDateString(),
-              temp: day.main.temp
-            } as WeatherUI
-          }
-        )));
+    // this.locationForecast$ = this.weatherService
+    //   .getLocationFiveDaysForecast(this.cityName)
+    //   .pipe(
+    //     map(data => data.list.filter((item: any) => {
+    //       const itemDate = new Date(item.dt_txt);
+    //       return itemDate.getHours() === 12
+    //     }).map((day: List) => ({
+    //           date: new Date(day.dt_txt).toLocaleDateString(),
+    //           temp: day.main.temp
+    //         } as WeatherUI
+    //       )
+    //     )));
   }
 }
 

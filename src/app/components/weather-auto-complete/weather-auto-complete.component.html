@@ -1,7 +1,6 @@
-<!--<input [formControl]="locationSearchInput" placeholder="Search city name" type="text" value="">-->
 <mat-form-field>
   <input type="text" matInput [formControl]="locationSearchInput" [matAutocomplete]="auto">
-  <mat-autocomplete #auto="matAutocomplete">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="citySelected($event)">
     <mat-option *ngFor="let option of citiesName" [value]="option">
       {{ option }}
     </mat-option>

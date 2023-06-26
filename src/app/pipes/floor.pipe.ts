@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FloorPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return Math.floor(<number>value);
+  transform(value: number): number {
+    return Math.floor(value);
   }
 }

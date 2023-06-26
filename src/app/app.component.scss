@@ -1,4 +1,6 @@
-
+.container{
+  background-color: lightblue;;
+}
 .navbar{
   display: flex;
   justify-content: space-between;
@@ -17,5 +19,14 @@
     width: 300px;
     list-style-type: none;
     font-size: 20px;
+
+    &__item:active{
+      background-color: lightgray;
+    }
+  }
+
+  .active{
+    color: darkblue;
+    font-size: 25px;
   }
 }

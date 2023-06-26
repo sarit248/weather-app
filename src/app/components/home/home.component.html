@@ -1,13 +1,28 @@
+<!--<div class="home-container">-->
+
+<!--  <app-weather-auto-complete (searchResult)="setCitySearchResult($event)"></app-weather-auto-complete>-->
+
+<!--  <div class="home-container__inner">-->
+<!--    <div class="home-container__favorites-current-weather">-->
+<!--      <app-current-weather [city]="citySubject.value" [isFavorites]="isFavorites"></app-current-weather>-->
+<!--      <button class="favorites-button" (click)="addToFavorites()">Add to Favorites</button>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    <app-weather-forecast [cityName]="citySubject.value"></app-weather-forecast>&ndash;&gt;-->
+<!--    <app-weather-forecast [city]="citySubject.asObservable()"></app-weather-forecast>-->
+<!--  </div>-->
+<!--</div>-->
+
+
 <div class="home-container">
 
-  <app-weather-auto-complete (searchResult)="getCitySearchResult($event)"></app-weather-auto-complete>
+  <app-weather-auto-complete (searchResult)="setCitySearchResult($event)"></app-weather-auto-complete>
 
   <div class="home-container__inner">
     <div class="home-container__favorites-current-weather">
-  <app-current-weather [city]="citySubject.asObservable()"></app-current-weather>
-    <button class="favorites-button" (click)="addToFavorites()">Add to Favorites</button>
+      <app-current-weather [city]="(citySearch$ | async)!" [isFavorites]="isFavorites"></app-current-weather>
+      <button class="favorites-button" (click)="addToFavorites()">Add to Favorites</button>
     </div>
-    <app-weather-forecast [cityName]="cityName"></app-weather-forecast>
-  <app-weather-forecast [city]="citySubject.asObservable()"></app-weather-forecast>
-</div>
+    <!--    <app-weather-forecast [cityName]="citySubject.value"></app-weather-forecast>-->
+    <app-weather-forecast [locationForecast]="(locationForecast$ | async)"></app-weather-forecast>
+  </div>
 </div>
